@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="nick">
+    <meta name="msapplication-TileColor" content="#49aa83">
+    <title>我的项目</title>
+    <style>
+      *:note(input, textarea) {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+      }
+      input {
+        user-select: text;
+        -webkit-user-select: text;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+    <script>
+      // web worker
+      (function() {
+        const number = '4'
+        const webWorker = new Worker('/static/worker.js');
+        webWorker.postMessage(number)
+        webWorker.onmessage = function(e) {
+          if (e.data) {
+            console.log('is prime')
+          } else {
+            console.log('not prime')
+          }
+          webWorker.terminate() // 关闭woker线程
+        }
+  
+      })();
+    </script>
+  </body>
+</html>
